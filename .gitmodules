@@ -1,3 +1,6 @@
 [submodule "din_lib_c"]
 	path = din_lib_c
 	url = https://github.com/desmonHak/din_lib_c.git
+[submodule "lib/Emmitx86"]
+	path = lib/Emmitx86
+	url = https://github.com/desmonHak/Emmitx86.git
