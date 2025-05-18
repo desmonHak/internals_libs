@@ -1,0 +1,3 @@
+[submodule "din_lib_c"]
+	path = din_lib_c
+	url = https://github.com/desmonHak/din_lib_c.git
