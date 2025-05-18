@@ -20,12 +20,15 @@ EXE_OBJS  = $(EXE_NAME).o
 TEST_EXES = $(foreach lib,$(LIBS),$(lib)_test.$(EXTENSION_EXEC))
 TEST_OBJS = $(foreach lib,$(LIBS),$(lib)_test.o)
 
+PATH_tests              = tests
+PATH_os                 = os
 PATH_LIBRARY            = lib
 PATH_Emmitx86			= $(PATH_LIBRARY)/Emmitx86
 PATH_din_lib_c          = din_lib_c 
 
 INCLUDE_FLAGS = 										\
 	-I.													\
+    -I$(PATH_os)                                        \
     -I$(PATH_din_lib_c)                                 \
 	-I$(PATH_Emmitx86)/include
 
@@ -50,7 +53,7 @@ else
     DLL_EXPORT_MACRO = -DBUILDING_DIN_LYB
 endif
 
-.PHONY: all clean
+.PHONY: all clean tests generate_lib_module generate_lib_static
 
 generate_lib_module: $(DLL_NAMES)
 
@@ -64,7 +67,7 @@ all: generate_lib_module tests #$(EXE_FILE)
 	$(CC) $(DLL_EXPORT_MACRO) $(INCLUDE_FLAGS) $^ $(LINKER_FLAGS) -shared -o $@ 
 
 # Compilar el objeto de cada librería
-os.o: os.c os.h
+os.o: $(PATH_os)/os.c $(PATH_os)/os.h
 	$(CC) $(CFLAGS) -DBUILDING_OS -c $<
 
 generate_lib_static: libEmmitx86.a

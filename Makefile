@@ -14,6 +14,8 @@ $(EXE_FILE): $(EXE_OBJS)
 #$(EXE_NAME).o: $(EXE_NAME).c $(addsuffix .h,$(LIBS))
 #	$(CC) $(CFLAGS) -c $<
 
+$(EXE_NAME).o: $(EXE_NAME).c
+	$(CC) $(CFLAGS) -c $<
 
 
 # --- TESTS AUTOMÁTICOS ---
@@ -23,12 +25,14 @@ $(EXE_FILE): $(EXE_OBJS)
 tests: generate_lib_static generate_lib_module $(TEST_EXES)
 
 # Regla para compilar ejecutables de test
-%_test.$(EXTENSION_EXEC): %_test.o 
+%_test.$(EXTENSION_EXEC): $(PATH_tests)/%_test.o
 	$(CC) $(CFLAGS_EXEC) -o $@ $^
 
+
 # Regla para compilar objetos de test
-%_test.o: %_test.c %.h 
-	$(CC) $(CFLAGS) -c $<
+%_test.o: $(PATH_tests)/%_test.c
+	$(CC) $(CFLAGS) -c $< -o $@
+
 
 clean:
 	$(RM) *.o *.$(EXTENSION_EXEC) *.$(EXTENSION_LIB)
