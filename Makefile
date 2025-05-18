@@ -1,5 +1,4 @@
-LIBS        = os
-EXE_NAME    = main
+LIBS = os
 
 include config.mk
 
@@ -10,13 +9,6 @@ CC = gcc
 # Compilar el ejecutable principal
 $(EXE_FILE): $(EXE_OBJS)
 	$(CC) $(CFLAGS_EXEC) -o $@ $^
-
-#$(EXE_NAME).o: $(EXE_NAME).c $(addsuffix .h,$(LIBS))
-#	$(CC) $(CFLAGS) -c $<
-
-$(EXE_NAME).o: $(EXE_NAME).c
-	$(CC) $(CFLAGS) -c $<
-
 
 # --- TESTS AUTOMÁTICOS ---
 
@@ -37,3 +29,4 @@ tests: generate_lib_static generate_lib_module $(TEST_EXES)
 clean:
 	$(RM) *.o *.$(EXTENSION_EXEC) *.$(EXTENSION_LIB)
 	$(MAKE) -C ./$(PATH_Emmitx86) -f $(OS_NAME).mk cleanall
+	$(MAKE) -C ./$(PATH_lexpar_c) -f $(OS_NAME).mk cleanall

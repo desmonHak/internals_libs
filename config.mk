@@ -10,15 +10,7 @@ else
     endif
 endif
 
-# Genera nombres de archivos automáticamente
-DLL_NAMES = $(foreach lib,$(LIBS),$(lib).$(EXTENSION_LIB))
-DLL_OBJS  = $(foreach lib,$(LIBS),$(lib).o)
-EXE_FILE  = $(EXE_NAME).$(EXTENSION_EXEC)
-EXE_OBJS  = $(EXE_NAME).o
 
-# Para tests: un ejecutable por cada librería dinámica
-TEST_EXES = $(foreach lib,$(LIBS),$(lib)_test.$(EXTENSION_EXEC))
-TEST_OBJS = $(foreach lib,$(LIBS),$(lib)_test.o)
 
 PATH_tests              = tests
 PATH_os                 = os
@@ -53,24 +45,46 @@ else
     DLL_EXPORT_MACRO = -DBUILDING_DIN_LYB
 endif
 
+COMMON_LIBS = $(LINKER_FLAGS)
+
+include os/require.mk
+
+# Genera nombres de archivos automáticamente
+DLL_NAMES = $(foreach lib,$(LIBS),$(lib).$(EXTENSION_LIB))
+DLL_OBJS  = $(foreach lib,$(LIBS),$(lib).o)
+
+# $(INCLUDES_$*) 
+EXE_FILE  = $($*_INCLUDES) $(EXE_NAME).$(EXTENSION_EXEC)
+EXE_OBJS  = $(EXE_NAME).o
+
+# Para tests: un ejecutable por cada librería dinámica
+TEST_EXES = $(foreach lib,$(LIBS),$(lib)_test.$(EXTENSION_EXEC))
+TEST_OBJS = $(foreach lib,$(LIBS),$(lib)_test.o)
+
+
+# para los que empieza por "os":
+os_LIBS = $(COMMON_LIBS) $(LINKER_OS)
+net_LIBS = $(COMMON_LIBS) $(PATH_LIBRARY)/libnet_specific.a
+ui_LIBS = $(COMMON_LIBS) $(PATH_LIBRARY)/libui_specific.a
+
+
 .PHONY: all clean tests generate_lib_module generate_lib_static
 
 generate_lib_module: $(DLL_NAMES)
 
 all: generate_lib_module tests #$(EXE_FILE)
 
+
 # Compilar la librería dinámica
 %.dll: %.o
-	$(CC) $(DLL_EXPORT_MACRO) $(INCLUDE_FLAGS) $^ $(LINKER_FLAGS) -shared -o $@ 
+	$(CC) $(DLL_EXPORT_MACRO) $(INCLUDE_FLAGS) $^ $(LINKER_FLAGS) $($*_LIBS) -shared -o $@
 
 %.so: %.o
-	$(CC) $(DLL_EXPORT_MACRO) $(INCLUDE_FLAGS) $^ $(LINKER_FLAGS) -shared -o $@ 
+	$(CC) $(DLL_EXPORT_MACRO) $(INCLUDE_FLAGS) $^ $(LINKER_FLAGS) $($*_LIBS) -shared -o $@
 
-# Compilar el objeto de cada librería
-os.o: $(PATH_os)/os.c $(PATH_os)/os.h
-	$(CC) $(CFLAGS) -DBUILDING_OS -c $<
 
 generate_lib_static: libEmmitx86.a
 
 libEmmitx86.a:
 	$(MAKE) -C ./$(PATH_Emmitx86) -f $(OS_NAME).mk
+

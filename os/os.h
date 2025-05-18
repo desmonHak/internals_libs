@@ -1,6 +1,7 @@
 #ifndef OS_H
 #define OS_H
 
+#include "json_c.h"
 #include "x86/amd64/amd64.h"
 #include "global_emmit.h"
 
