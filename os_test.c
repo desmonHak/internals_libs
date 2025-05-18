@@ -26,6 +26,11 @@ int main() {
 
     who_system();
 
+    shellcode_t *ptr_sc = (shellcode_t *)load_simbol(handle, "code");
+
+    call(ptr_sc, dump);
+
     close_lib(handle);
+    puts("Exit...");
     return 0;
 }

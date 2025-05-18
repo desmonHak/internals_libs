@@ -2,5 +2,7 @@
 <project version="4">
   <component name="VcsDirectoryMappings">
     <mapping directory="" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/din_lib_c" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/lib/Emmitx86" vcs="Git" />
   </component>
 </project>

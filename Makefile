@@ -20,15 +20,16 @@ $(EXE_FILE): $(EXE_OBJS)
 
 # Regla general para cada ejecutable de test
 # Cada test debe tener su propio archivo: os_test.c, mylib_test.c, etc.
-tests: $(TEST_EXES)
+tests: generate_lib_static generate_lib_module $(TEST_EXES)
 
 # Regla para compilar ejecutables de test
-%_test.$(EXTENSION_EXEC): %_test.o %.o
+%_test.$(EXTENSION_EXEC): %_test.o 
 	$(CC) $(CFLAGS_EXEC) -o $@ $^
 
 # Regla para compilar objetos de test
-%_test.o: %_test.c %.h
+%_test.o: %_test.c %.h 
 	$(CC) $(CFLAGS) -c $<
 
 clean:
 	$(RM) *.o *.$(EXTENSION_EXEC) *.$(EXTENSION_LIB)
+	$(MAKE) -C ./$(PATH_Emmitx86) -f $(OS_NAME).mk cleanall
