@@ -4,3 +4,6 @@
 [submodule "lib/Emmitx86"]
 	path = lib/Emmitx86
 	url = https://github.com/desmonHak/Emmitx86.git
+[submodule "lib/lexpar_c"]
+	path = lib/lexpar_c
+	url = https://github.com/desmonHak/lexpar_c.git
