@@ -78,6 +78,7 @@ typedef struct info_destination_module {
 } info_destination_module;
 
 typedef void (*who_system_t)();
+typedef bool (*queery_arch_t)(const char*);
 
 DLL_EXPORT void who_system();
 

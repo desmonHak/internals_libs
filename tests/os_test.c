@@ -24,7 +24,17 @@ int main() {
         return 1;
     }
 
+    queery_arch_t queery_arch = (queery_arch_t)load_simbol(handle, "queery_arch");
+    get_error_lib(error);
+    if (error != NULL) {
+        fprintf(stderr, "No se pudo obtener la funcion who_system: %s\n", error);
+        close_lib(handle);
+        return 1;
+    }
+
     who_system();
+
+    printf("Esta x86_64 ? = %d\n", queery_arch("x86_64"));
 
     shellcode_t *ptr_sc = (shellcode_t *)load_simbol(handle, "code");
 

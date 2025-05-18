@@ -59,6 +59,10 @@ DLL_EXPORT void who_system() {
     EMIT_MOV_R_I(ptr_sc, RBX, 0x12345678deadbeefull);
 }
 
+DLL_EXPORT bool queery_arch(const char* name_arch) {
+    // si se obtiene algo distinto a NULL es que la arch existe en el json
+    return json_get_string(json_specs, name_arch) != NULL;
+}
 
 const char *getBuild() { //Get current architecture, detectx nearly every architecture. Coded by Freak
     #if defined(__x86_64__) || defined(_M_X64)

@@ -1,1 +1,107 @@
-{} 
+{
+    "x86_64": {
+        "msfcall": {
+            "number": {
+                "uint64_t": ["rcx", "rdx", "r8",  "r9",  "stack"],
+                "uint32_t": ["ecx", "edx", "r8d", "r9d", "stack"],
+                "uint16_t": ["cx",  "dx",  "r8w", "r9w", "stack"],
+                "uint8_t":  ["cl",  "dl",  "r8b", "r9b", "stack"]
+            }
+        },
+        "syscall_linux": {
+            "number": {
+                "uint64_t": ["rdi", "rsi", "rdx", "r10",  "r8",  "r9", "stack"],
+                "uint32_t": ["edi", "esi", "edx", "r10d", "r8d", "r9d", "stack"],
+                "uint16_t": ["di",  "si",  "dx",  "r10w", "r8w", "r9w", "stack"],
+                "uint8_t":  ["dil", "sil", "dl",  "r10b", "r8b", "r9b", "stack"]
+            }
+        },
+        "syscall_windows": {
+            "number": {
+                "uint64_t": ["rcx", "rdx", "r8",  "r9",  "stack"],
+                "uint32_t": ["ecx", "edx", "r8d", "r9d", "stack"],
+                "uint16_t": ["cx",  "dx",  "r8w", "r9w", "stack"],
+                "uint8_t":  ["cl",  "dl",  "r8b", "r9b", "stack"]
+            }
+        }
+    },
+    "x86_32": {
+        "cdecl": {
+            "number": {
+                "uint32_t": ["stack"],
+                "uint16_t": ["stack"],
+                "uint8_t":  ["stack"]
+            }
+        },
+        "fastcall": {
+            "number": {
+                "uint32_t": ["ecx", "edx", "stack"],
+                "uint16_t": ["cx", "dx", "stack"],
+                "uint8_t":  ["cl", "dl", "stack"]
+            }
+        }
+    },
+    "x86_16": {
+        "cdecl": {
+            "number": {
+                "uint16_t": ["stack"],
+                "uint8_t":  ["stack"]
+            }
+        },
+        "fastcall": {
+            "number": {
+                "uint16_t": ["cx", "dx", "stack"],
+                "uint8_t":  ["cl", "dl", "stack"]
+            }
+        }
+    },
+    "arm_64": {
+        "aapcs": {
+            "number": {
+                "uint64_t": ["x0", "x1", "x2", "x3", "x4", "x5", "x6", "x7", "stack"],
+                "uint32_t": ["w0", "w1", "w2", "w3", "w4", "w5", "w6", "w7", "stack"],
+                "uint16_t": ["w0", "w1", "w2", "w3", "w4", "w5", "w6", "w7", "stack"],
+                "uint8_t":  ["w0", "w1", "w2", "w3", "w4", "w5", "w6", "w7", "stack"]
+            }
+        },
+        "syscall_linux": {
+            "number": {
+                "uint64_t": ["x0", "x1", "x2", "x3", "x4", "x5", "x6", "x7", "stack"],
+                "uint32_t": ["w0", "w1", "w2", "w3", "w4", "w5", "w6", "w7", "stack"],
+                "uint16_t": ["w0", "w1", "w2", "w3", "w4", "w5", "w6", "w7", "stack"],
+                "uint8_t":  ["w0", "w1", "w2", "w3", "w4", "w5", "w6", "w7", "stack"]
+            }
+        },
+        "baremetal": {
+            "number": {
+                "uint64_t": ["x0", "x1", "x2", "x3", "x4", "x5", "x6", "x7"],
+                "uint32_t": ["w0", "w1", "w2", "w3", "w4", "w5", "w6", "w7"],
+                "uint16_t": ["w0", "w1", "w2", "w3", "w4", "w5", "w6", "w7"],
+                "uint8_t":  ["w0", "w1", "w2", "w3", "w4", "w5", "w6", "w7"]
+            }
+        }
+    },
+    "arm_32": {
+        "aapcs": {
+            "number": {
+                "uint32_t": ["r0", "r1", "r2", "r3", "stack"],
+                "uint16_t": ["r0", "r1", "r2", "r3", "stack"],
+                "uint8_t":  ["r0", "r1", "r2", "r3", "stack"]
+            }
+        },
+        "syscall_linux": {
+            "number": {
+                "uint32_t": ["r0", "r1", "r2", "r3", "r4", "r5", "r6", "stack"],
+                "uint16_t": ["r0", "r1", "r2", "r3", "r4", "r5", "r6", "stack"],
+                "uint8_t":  ["r0", "r1", "r2", "r3", "r4", "r5", "r6", "stack"]
+            }
+        },
+        "baremetal": {
+            "number": {
+                "uint32_t": ["r0", "r1", "r2", "r3", "r4", "r5", "r6", "r7"],
+                "uint16_t": ["r0", "r1", "r2", "r3", "r4", "r5", "r6", "r7"],
+                "uint8_t":  ["r0", "r1", "r2", "r3", "r4", "r5", "r6", "r7"]
+            }
+        }
+    }
+}
