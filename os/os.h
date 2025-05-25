@@ -1,6 +1,7 @@
 #ifndef OS_H
 #define OS_H
 
+
 #include "json_c.h"
 #include "x86/amd64/amd64.h"
 #include "global_emmit.h"
@@ -11,7 +12,7 @@
  * | version  | sub version |
  * 0b0000 0001 0000 0000
  */
-#define VERSION_OS_MODULE 0b0000 0001 0000 0000
+#define VERSION_OS_MODULE 0b0000000100000000
 
 typedef enum arch_type_t {
     arch_type_x86_16,
@@ -79,6 +80,40 @@ typedef struct info_destination_module {
 
 typedef void (*who_system_t)();
 typedef bool (*queery_arch_t)(const char*);
+
+
+
+typedef enum err_code_get_type_data_json
+{
+    ERR_NO_ERROR,
+    ARCH_UNKNOWN,
+    REGS_UNKNOWN,
+    CATEGORY_UNKNOWN,
+    TYPE_UNKNOWN,
+    CONV_UNKNOWN
+} err_code_get_type_data_json;
+static const char *errs_get_type_data_json[] = {
+    [ARCH_UNKNOWN]      = "Esta arquitectura, no esta registrada",
+    [ARCH_UNKNOWN]      = "ARCH_UNKNOWN",
+    [REGS_UNKNOWN]      = "REGS_UNKNOWN",
+    [CATEGORY_UNKNOWN]  = "CATEGORY_UNKNOWN",
+    [TYPE_UNKNOWN]      = "TYPE_UNKNOWN",
+    [CONV_UNKNOWN]      = "CONV_UNKNOWN"
+};
+typedef struct type_data_json_t {
+    const char*                   cat_name; /** nombre de la categoria              */
+    const char*                  name_type; /** nombre del tipo                     */
+    const char**                 data_conv; /** registros de la convencion          */
+    const char*                       conv; /** nombre de la convencion             */
+    const char*                       arch; /** arquitectura                        */
+    err_code_get_type_data_json   err_code; /** codigo de error al obtener datos    */
+} type_data_json_t;
+type_data_json_t get_type_data_json(const char* arch, const char* name_conv);
+
+// Helper: ¿Es un nodo array?
+static int is_array_node(ast_node_t* node) {
+    return node && node->data && strcmp((char*)node->data, "[") == 0;
+}
 
 DLL_EXPORT void who_system();
 

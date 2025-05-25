@@ -2,7 +2,7 @@ LIBS = os
 
 include config.mk
 
-CC = gcc
+CC = gcc -std=c11
 
 
 

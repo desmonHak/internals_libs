@@ -1,0 +1,26 @@
+{
+  "type": "object",
+  "additionalProperties": {
+    "type": "object",
+    "description": "Arquitectura como x86_64, arm_64, etc.",
+    "additionalProperties": {
+      "type": "object",
+      "description": "Convención de llamada, como msfcall, syscall_linux, etc.",
+      "properties": {
+        "number": {
+          "type": "object",
+          "description": "Mapa de tipo de dato a lista de registros o 'stack'",
+          "additionalProperties": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "minItems": 1
+          }
+        }
+      },
+      "required": ["number"],
+      "additionalProperties": false
+    }
+  }
+}
