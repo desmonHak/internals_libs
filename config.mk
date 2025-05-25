@@ -39,10 +39,11 @@ ifeq ($(OS_NAME),windows)
 else
     EXTENSION_LIB  = so
     EXTENSION_EXEC = elf
-    CFLAGS         = -Wall -O2 -fPIC $(INCLUDE_FLAGS) 
+    CFLAGS         = -Wall -static -g -O0 -fPIC $(INCLUDE_FLAGS) -D_GNU_SOURCE  -D_POSIX_C_SOURCE=200809L
     RM             = rm -rf
     CFLAGS_EXEC    = $(CFLAGS) -ldl -Wl,-rpath=.
     DLL_EXPORT_MACRO = -DBUILDING_DIN_LYB
+
 endif
 
 COMMON_LIBS = $(LINKER_FLAGS)

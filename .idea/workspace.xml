@@ -6,22 +6,28 @@
   <component name="BackendCodeEditorMiscSettings">
     <option name="/Default/Housekeeping/FeatureSuggestion/FeatureSuggestionManager/DisabledSuggesters/=SwitchToGoToActionSuggester/@EntryIndexedValue" value="true" type="bool" />
   </component>
-  <component name="CMakePresetLoader"><![CDATA[{
-  "useNewFormat": true
-}]]></component>
+  <component name="CMakePresetLoader">{
+  &quot;useNewFormat&quot;: true
+}</component>
+  <component name="CMakeProjectFlavorService">
+    <option name="flavorId" value="CMakePlainProjectFlavor" />
+  </component>
   <component name="CMakeReloadState">
     <option name="reloaded" value="true" />
   </component>
   <component name="CMakeRunConfigurationManager">
     <generated>
+      <config projectName="MyProject" targetName="generate_lib_static_libcolors" />
       <config projectName="MyProject" targetName="clean_all" />
       <config projectName="MyProject" targetName="tests" />
       <config projectName="MyProject" targetName="default" />
+      <config projectName="MyProject" targetName="generate_lib_static_lexpar_c" />
       <config projectName="MyProject" targetName="os" />
       <config projectName="MyProject" targetName="os_test" />
       <config projectName="MyProject" targetName="build_all" />
       <config projectName="MyProject" targetName="generate_lib_module" />
-      <config projectName="MyProject" targetName="generate_lib_static" />
+      <config projectName="MyProject" targetName="generate_lib_static_structs_data_c" />
+      <config projectName="MyProject" targetName="generate_lib_static_Emmitx86" />
     </generated>
   </component>
   <component name="CMakeSettings">
@@ -32,18 +38,24 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="551fea99-8a8d-46a3-92f5-13212e2dec6c" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/.name" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/internals_libs.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Makefile" beforeDir="false" afterPath="$PROJECT_DIR$/Makefile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/json_specs.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config.mk" beforeDir="false" afterPath="$PROJECT_DIR$/config.mk" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/din_lib_c" beforeDir="false" afterPath="$PROJECT_DIR$/din_lib_c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/din_lib_c/din_lib_c.h" beforeDir="false" afterPath="$PROJECT_DIR$/din_lib_c/din_lib_c.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/din_lib_c/init.c" beforeDir="false" afterPath="$PROJECT_DIR$/din_lib_c/init.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/din_lib_c/main.c" beforeDir="false" afterPath="$PROJECT_DIR$/din_lib_c/main.c" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/Emmitx86" beforeDir="false" afterPath="$PROJECT_DIR$/lib/Emmitx86" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/Emmitx86/src/global_emmit.c" beforeDir="false" afterPath="$PROJECT_DIR$/lib/Emmitx86/src/global_emmit.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/lexpar_c" beforeDir="false" afterPath="$PROJECT_DIR$/lib/lexpar_c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/lexpar_c/lib/structs_data_C" beforeDir="false" afterPath="$PROJECT_DIR$/lib/lexpar_c/lib/structs_data_C" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/lexpar_c/lib/structs_data_C/DebugLibC" beforeDir="false" afterPath="$PROJECT_DIR$/lib/lexpar_c/lib/structs_data_C/DebugLibC" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/lexpar_c/lib/structs_data_C/DebugLibC/colors-C-C-plus-plus" beforeDir="false" afterPath="$PROJECT_DIR$/lib/lexpar_c/lib/structs_data_C/DebugLibC/colors-C-C-plus-plus" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/lexpar_c/lib/structs_data_C/DebugLibC/colors-C-C-plus-plus/colors.h" beforeDir="false" afterPath="$PROJECT_DIR$/lib/lexpar_c/lib/structs_data_C/DebugLibC/colors-C-C-plus-plus/colors.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/lexpar_c/lib/structs_data_C/DebugLibC/colors-C-C-plus-plus/old-code/colors.h" beforeDir="false" afterPath="$PROJECT_DIR$/lib/lexpar_c/lib/structs_data_C/DebugLibC/colors-C-C-plus-plus/old-code/colors.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/os/os.c" beforeDir="false" afterPath="$PROJECT_DIR$/os/os.c" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/os/os.h" beforeDir="false" afterPath="$PROJECT_DIR$/os/os.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/os_test.c" beforeDir="false" afterPath="$PROJECT_DIR$/tests/os_test.c" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -68,51 +80,23 @@
     <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/lib/lexpar_c/include/json_c.h" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/lib/lexpar_c/lib/structs_data_C/array-list.h" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/lib/lexpar_c/lib/structs_data_C/ast.h" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/os/os.h" root0="FORCE_HIGHLIGHTING" />
   </component>
+  <component name="ProjectColorInfo">{
+  &quot;customColor&quot;: &quot;&quot;,
+  &quot;associatedIndex&quot;: 3
+}</component>
+  <component name="ProjectId" id="2xaetVzHnZwgDvMkdC6mCR6zwV3" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
-    "CMake Application.os.executor": "Run",
+    "CMake Application.os.executor": "Valgrind",
     "CMake Application.os_test.executor": "Run",
     "ModuleVcsDetector.initialDetectionPerformed": "true",
     "RunOnceActivity.RadMigrateCodeStyle": "true",
@@ -158,7 +142,22 @@
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
     </configuration>
-    <configuration name="generate_lib_static" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="MyProject" TARGET_NAME="generate_lib_static" CONFIG_NAME="Debug">
+    <configuration name="generate_lib_static_Emmitx86" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="MyProject" TARGET_NAME="generate_lib_static_Emmitx86" CONFIG_NAME="Debug">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="generate_lib_static_lexpar_c" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="MyProject" TARGET_NAME="generate_lib_static_lexpar_c" CONFIG_NAME="Debug">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="generate_lib_static_libcolors" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="MyProject" TARGET_NAME="generate_lib_static_libcolors" CONFIG_NAME="Debug">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="generate_lib_static_structs_data_c" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="MyProject" TARGET_NAME="generate_lib_static_structs_data_c" CONFIG_NAME="Debug">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
@@ -183,7 +182,10 @@
       <item itemvalue="CMake Application.clean_all" />
       <item itemvalue="CMake Application.default" />
       <item itemvalue="CMake Application.generate_lib_module" />
-      <item itemvalue="CMake Application.generate_lib_static" />
+      <item itemvalue="CMake Application.generate_lib_static_Emmitx86" />
+      <item itemvalue="CMake Application.generate_lib_static_lexpar_c" />
+      <item itemvalue="CMake Application.generate_lib_static_libcolors" />
+      <item itemvalue="CMake Application.generate_lib_static_structs_data_c" />
       <item itemvalue="CMake Application.os" />
       <item itemvalue="CMake Application.os_test" />
       <item itemvalue="CMake Application.tests" />
@@ -197,6 +199,10 @@
       <option name="presentableId" value="Default" />
       <updated>1748114993070</updated>
       <workItem from="1748114994632" duration="14284000" />
+      <workItem from="1748180829164" duration="416000" />
+      <workItem from="1748185553651" duration="206000" />
+      <workItem from="1748186906959" duration="5478000" />
+      <workItem from="1748194765140" duration="1816000" />
     </task>
     <servers />
   </component>

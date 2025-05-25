@@ -40,6 +40,15 @@ int main() {
 
     call(ptr_sc, dump);
 
+    destructor_t os_destructor = (destructor_t)load_simbol(handle, "dtor__");
+    get_error_lib(error);
+    if (error != NULL) {
+        fprintf(stderr, "No se pudo obtener la funcion os_destructor(%p): %s\n", os_destructor, error);
+        close_lib(handle);
+        return 1;
+    }
+    os_destructor();
+
     close_lib(handle);
     puts("Exit...");
     return 0;

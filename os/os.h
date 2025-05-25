@@ -114,7 +114,7 @@ type_data_json_t get_type_data_json(const char* arch, const char* name_conv);
 static int is_array_node(ast_node_t* node) {
     return node && node->data && strcmp((char*)node->data, "[") == 0;
 }
-
+DLL_EXPORT void os_destructor(void);
 DLL_EXPORT void who_system();
 
 #endif // MYLIB_H

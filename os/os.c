@@ -10,7 +10,7 @@ DLL_EXPORT info_destination_module info_module = {
     .os     = THIS_OS
 };
 
-DLL_EXPORT shellcode_t code;
+DLL_EXPORT shellcode_t code = { 0 };
 
 /**
  * @brief puntero al json con informacion de las especificaciones de la 
@@ -20,7 +20,7 @@ DLL_EXPORT ast_node_t* json_specs;
 
 #include "init.c"
 
-static void print_type_data_json(const type_data_json_t* data) {
+DLL_EXPORT  void print_type_data_json(const type_data_json_t* data) {
     if (!data) {
         printf("type_data_json_t: (null)\n");
         return;
@@ -44,12 +44,16 @@ static void print_type_data_json(const type_data_json_t* data) {
     }
     //printf("==========================\n");
 }
-static inline void print_type_data_json_with_free(const type_data_json_t* data, void* NULL_DATA) {
+DLL_EXPORT  inline void print_type_data_json_with_free(const type_data_json_t* data, void* NULL_DATA) {
     print_type_data_json(data);
+    for (const char** r = data->data_conv; *r; ++r) {
+        free(*r);
+        *r = NULL;
+    }
     free(data->data_conv);
     free(data);
 }
-static inline void push_type_data_json(const type_data_json_t* data, ArrayList* arr) {
+DLL_EXPORT void push_type_data_json(const type_data_json_t* data, ArrayList* arr) {
     push_back_a(arr, data);
 }
 
@@ -78,17 +82,9 @@ static inline void push_type_data_json(const type_data_json_t* data, ArrayList* 
  * @param name_conv
  * @return
  */
-static inline void dump_all_conventions(type_data_json_t* data) {
-    print_type_data_json(data);
-}
 
-static inline void get_elements_specs_json(ArrayList *arr, type_data_json_t* data) {
-    push_back_a(arr, data);
-}
-
-void *build_type_data_json_array(ast_node_t *json_specs, void (*func)(void*, void*), void *user_data) {
+DLL_EXPORT void *build_type_data_json_array(ast_node_t *json_specs, void (*func)(void*, void*), void *user_data) {
     ArrayList *arr = NULL;
-    if ((void*)func == (void*)get_elements_specs_json) {arr = createArrayList(1, NULL);}
 
     size_t n_archs = size_a(json_specs->ramas);
     for (size_t i = 0; i < n_archs; ++i) {
@@ -135,7 +131,7 @@ void *build_type_data_json_array(ast_node_t *json_specs, void (*func)(void*, voi
                     ast_node_t* regs_array = (ast_node_t*)get_element_a(type_val->ramas, 0);
 
                     size_t nregs = size_a(regs_array->ramas);
-                    const char** regs = malloc((nregs + 1) * sizeof(char*));
+                    const char** regs = calloc((nregs + 1), sizeof(char*));
                     for (size_t r = 0; r < nregs; ++r) {
                         ast_node_t* reg_node = (ast_node_t*)get_element_a(regs_array->ramas, r);
                         regs[r] = (const char*)reg_node->data;
@@ -160,7 +156,7 @@ void *build_type_data_json_array(ast_node_t *json_specs, void (*func)(void*, voi
 }
 
 // Libera un array de type_data_json_t
-void free_type_data_json_array(type_data_json_t* arr, size_t n) {
+DLL_EXPORT void free_type_data_json_array(type_data_json_t* arr, size_t n) {
     if (!arr) return;
     for (size_t i = 0; i < n; ++i) {
         if (arr[i].data_conv) free((void*)arr[i].data_conv);
@@ -177,7 +173,7 @@ static ast_node_t* get_value_node(ast_node_t* key_node) {
     return (ast_node_t*)get_element_a(colon_node->ramas, 0);
 }
 
-static inline void os_constructor(void) { 
+DLL_EXPORT void os_constructor(void) {
     puts("--- os_constructor ---"); 
     printf("- type_arch: %s\n", arch_type_string[info_module.arch]);
     printf("- type_os:   %s\n", os_type_string[info_module.os]);
@@ -189,19 +185,24 @@ static inline void os_constructor(void) {
     }
 
 
-    build_type_data_json_array(json_specs, (void*)print_type_data_json_with_free, NULL);
+    build_type_data_json_array(json_specs, (void*)print_type_data_json, NULL);
 
     ArrayList*arr = createArrayList(0, NULL);
     build_type_data_json_array(json_specs, (void*)push_type_data_json, arr);
     for (size_t i = 0; i < size_a(arr); ++i) {
-        print_type_data_json_with_free(arr->Array[i], NULL);
+        print_type_data_json(arr->Array[i]);
     }
-    freeArrayList_struct(&arr);
+
+    freeArrayListAndElements(&arr, free);
+
 
 }
-static inline void os_destructor(void) { 
-    puts("--- os_destructor  ---"); 
+DLL_EXPORT void os_destructor(void) {
+    puts("--- os_destructor  ---");
+
     json_free(json_specs);
+
+    if (code.free != NULL) code.free(&code);
 }
 
 /**
@@ -212,8 +213,6 @@ void register_init(void) {
     constructor = os_constructor;
     destructor  = os_destructor;
 }
-
-
 
 
 
@@ -232,7 +231,7 @@ DLL_EXPORT void who_system() {
 DLL_EXPORT bool queery_arch(const char* name_arch) {
     // si se obtiene algo distinto a NULL es que la arch existe en el json
 
-    return json_get_string(json_specs, name_arch) != NULL;
+    return (json_get_string(json_specs, name_arch) != NULL);
 }
 
 DLL_EXPORT const char *getBuild() { //Get current architecture, detectx nearly every architecture. Coded by Freak
