@@ -39,23 +39,11 @@
   <component name="ChangeListManager">
     <list default="true" id="551fea99-8a8d-46a3-92f5-13212e2dec6c" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config.mk" beforeDir="false" afterPath="$PROJECT_DIR$/config.mk" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/din_lib_c" beforeDir="false" afterPath="$PROJECT_DIR$/din_lib_c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/din_lib_c/din_lib_c.h" beforeDir="false" afterPath="$PROJECT_DIR$/din_lib_c/din_lib_c.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/din_lib_c/init.c" beforeDir="false" afterPath="$PROJECT_DIR$/din_lib_c/init.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/din_lib_c/main.c" beforeDir="false" afterPath="$PROJECT_DIR$/din_lib_c/main.c" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/Emmitx86" beforeDir="false" afterPath="$PROJECT_DIR$/lib/Emmitx86" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/Emmitx86/src/global_emmit.c" beforeDir="false" afterPath="$PROJECT_DIR$/lib/Emmitx86/src/global_emmit.c" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/lexpar_c" beforeDir="false" afterPath="$PROJECT_DIR$/lib/lexpar_c" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/lexpar_c/lib/structs_data_C" beforeDir="false" afterPath="$PROJECT_DIR$/lib/lexpar_c/lib/structs_data_C" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/lexpar_c/lib/structs_data_C/DebugLibC" beforeDir="false" afterPath="$PROJECT_DIR$/lib/lexpar_c/lib/structs_data_C/DebugLibC" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/lexpar_c/lib/structs_data_C/DebugLibC/colors-C-C-plus-plus" beforeDir="false" afterPath="$PROJECT_DIR$/lib/lexpar_c/lib/structs_data_C/DebugLibC/colors-C-C-plus-plus" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/lexpar_c/lib/structs_data_C/DebugLibC/colors-C-C-plus-plus/colors.h" beforeDir="false" afterPath="$PROJECT_DIR$/lib/lexpar_c/lib/structs_data_C/DebugLibC/colors-C-C-plus-plus/colors.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/lexpar_c/lib/structs_data_C/DebugLibC/colors-C-C-plus-plus/old-code/colors.h" beforeDir="false" afterPath="$PROJECT_DIR$/lib/lexpar_c/lib/structs_data_C/DebugLibC/colors-C-C-plus-plus/old-code/colors.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/os/os.c" beforeDir="false" afterPath="$PROJECT_DIR$/os/os.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/os/os.h" beforeDir="false" afterPath="$PROJECT_DIR$/os/os.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/os_test.c" beforeDir="false" afterPath="$PROJECT_DIR$/tests/os_test.c" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -202,7 +190,7 @@
       <workItem from="1748180829164" duration="416000" />
       <workItem from="1748185553651" duration="206000" />
       <workItem from="1748186906959" duration="5478000" />
-      <workItem from="1748194765140" duration="1816000" />
+      <workItem from="1748194765140" duration="3231000" />
     </task>
     <servers />
   </component>
