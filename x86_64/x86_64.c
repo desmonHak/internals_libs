@@ -119,13 +119,33 @@ void register_init(void) {
 }
 
 void *allocate_executable_buffer(size_t size) {
-    size = (size + 0xFFF) & ~0xFFF; // Redondear a 4KB
+    size = (size + 0xFFF) & ~0xFFF; // redondear a múltiplo de 4KB
+#ifdef _WIN32
     void *mem = VirtualAlloc(NULL, size, MEM_COMMIT | MEM_RESERVE, PAGE_EXECUTE_READWRITE);
     if (!mem) {
-        // error
+        fprintf(stderr, "VirtualAlloc falló\n");
         return NULL;
     }
     return mem;
+#else
+    void *mem = mmap(NULL, size, PROT_READ | PROT_WRITE | PROT_EXEC,
+                     MAP_PRIVATE | MAP_ANONYMOUS, -1, 0);
+    if (mem == MAP_FAILED) {
+        perror("mmap falló");
+        return NULL;
+    }
+    return mem;
+#endif
+}
+
+// Libera la memoria ejecutable
+void free_executable_buffer(void *mem, size_t size) {
+    size = (size + 0xFFF) & ~0xFFF;
+#ifdef _WIN32
+    VirtualFree(mem, 0, MEM_RELEASE);
+#else
+    munmap(mem, size);
+#endif
 }
 
 /**
@@ -172,9 +192,7 @@ static void *call_external_function(void *arg) {
     printf("[+] Ejecutando shellcode en %p\n", exec_mem);
     ((void (*)())exec_mem)();
 
-    VirtualFree(exec_mem, 0, MEM_RELEASE);
-
-
+    free_executable_buffer(exec_mem, call_data->arg->size);
 
 
     call_data->finished = true;

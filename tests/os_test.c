@@ -87,7 +87,8 @@ int main() {
             puts("Error al crear el hilo");
         }
 
-        _sleep(2000);
+#include<unistd.h>
+        sleep(2);
 
         printf("valor obtenido de la ejecucion: %d\n", (size_t)thread.pending_call->result);
 
