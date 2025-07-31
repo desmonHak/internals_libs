@@ -38,7 +38,7 @@ int main() {
 
 
     typedef const char*(*f_get_str_register)(t_registers_x86_64);
-    f_get_str_register* get_str_register = (f_get_str_register)load_simbol(handle, "get_str_register");
+    f_get_str_register get_str_register = (f_get_str_register)load_simbol(handle, "get_str_register");
     get_error_lib(error);
     if (error != NULL) {
         fprintf(stderr, "No se pudo obtener la funcion get_str_register(%p): %s\n", get_str_register, error);
