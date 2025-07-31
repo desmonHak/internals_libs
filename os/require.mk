@@ -17,7 +17,7 @@ INCLUDE_FLAGS += $(OS_INCLUDES)
 
 # Compilar el objeto de cada librería
 os.o: $(PATH_os)/os.c $(PATH_os)/os.h libEmmitx86.a liblexpar.a
-	$(CC) $(CFLAGS)  -DBUILDING_OS -c $< $(LINKER_OS)
+	$(CC) $(CFLAGS) -DBUILDING_DIN_LYB -DBUILDING_OS -c $< $(LINKER_OS)
 
 liblexpar.a:
 	$(MAKE) -C ./$(PATH_lexpar_c) -f $(OS_NAME).mk

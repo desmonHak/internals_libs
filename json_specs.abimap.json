@@ -15,7 +15,7 @@
                 "uint16_t": ["cx",      "dx",       "r8w",      "r9w",      "stack"],
                 "uint8_t":  ["cl",      "dl",       "r8b",      "r9b",      "stack"],
                 "float"  :  ["xmm0",    "xmm1",     "xmm2",     "xmm3",     "stack"],
-                "void*": ["rcx", "rdx", "r8", "r9", "stack"]
+                "void*":    ["rcx",     "rdx",      "r8",       "r9",       "stack"]
             }
         },
         "syscall_linux": {
@@ -41,8 +41,8 @@
                 "uint64_t": ["rcx", "rdx", "stack"],
                 "uint32_t": ["ecx", "edx", "stack"],
                 "uint16_t": ["cx", "dx", "stack"],
-                "uint8_t": ["cl", "dl", "stack"],
-                "void*": ["rcx", "rdx", "stack"]
+                "uint8_t":  ["cl", "dl", "stack"],
+                "void*":    ["rcx", "rdx", "stack"]
             }
         }
     },

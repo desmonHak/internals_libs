@@ -11,16 +11,22 @@ else
 endif
 
 
+# librerias dinamicas
+PATH_os                 = os
+PATH_x86_64				= x86_64
 
 PATH_tests              = tests
-PATH_os                 = os
 PATH_LIBRARY            = lib
 PATH_Emmitx86			= $(PATH_LIBRARY)/Emmitx86
 PATH_din_lib_c          = din_lib_c 
 
+# librerias dinamicas con las que enlazar
+PATH_LIBS_DINAMIC =     -I$(PATH_os)    		\
+                        -I$(PATH_x86_64)
+
 INCLUDE_FLAGS = 										\
 	-I.													\
-    -I$(PATH_os)                                        \
+	$(PATH_LIBS_DINAMIC)								\
     -I$(PATH_din_lib_c)                                 \
 	-I$(PATH_Emmitx86)/include
 
@@ -48,7 +54,9 @@ endif
 
 COMMON_LIBS = $(LINKER_FLAGS)
 
+# librerias dinamicas, cargar sus confs
 include os/require.mk
+include x86_64/require.mk
 
 # Genera nombres de archivos automáticamente
 DLL_NAMES = $(foreach lib,$(LIBS),$(lib).$(EXTENSION_LIB))
@@ -63,10 +71,9 @@ TEST_EXES = $(foreach lib,$(LIBS),$(lib)_test.$(EXTENSION_EXEC))
 TEST_OBJS = $(foreach lib,$(LIBS),$(lib)_test.o)
 
 
-# para los que empieza por "os":
+# librerias dinamicas:
 os_LIBS = $(COMMON_LIBS) $(LINKER_OS)
-net_LIBS = $(COMMON_LIBS) $(PATH_LIBRARY)/libnet_specific.a
-ui_LIBS = $(COMMON_LIBS) $(PATH_LIBRARY)/libui_specific.a
+x86_64_LIBS = $(COMMON_LIBS) $(LINKER_X86_64)
 
 
 .PHONY: all clean tests generate_lib_module generate_lib_static

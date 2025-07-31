@@ -173,6 +173,9 @@ static ast_node_t* get_value_node(ast_node_t* key_node) {
     return (ast_node_t*)get_element_a(colon_node->ramas, 0);
 }
 
+DLL_EXPORT din_lib lib_isa = NULL;
+
+
 DLL_EXPORT void os_constructor(void) {
     puts("--- os_constructor ---"); 
     printf("- type_arch: %s\n", arch_type_string[info_module.arch]);
@@ -195,7 +198,25 @@ DLL_EXPORT void os_constructor(void) {
 
     freeArrayListAndElements(&arr, free);
 
+    // Cargar la libreria para la generacion en esta arquitectura compilada
 
+    #ifndef MAX_PATH
+    #define MAX_PATH 260
+    #endif
+
+    char path[MAX_PATH] = {0};
+    snprintf(path, sizeof(path), "./%s" EXT_LIB, getBuild());
+    lib_isa = load_lib_route(path); // cargamos la DLL para esta ISA
+
+    char *error = NULL;
+    if (!lib_isa) {
+        get_error_lib(error);
+        fprintf(stderr, "No se pudo cargar la libreria: %s\n", error);
+        exit(-1);
+    }
+
+    get_error_lib(error); // Limpiar errores previos
+    printf( "lib_isa cargado correctamente: %s\n", path);
 }
 DLL_EXPORT void os_destructor(void) {
     puts("--- os_destructor  ---");
@@ -203,6 +224,23 @@ DLL_EXPORT void os_destructor(void) {
     json_free(json_specs);
 
     if (code.free != NULL) code.free(&code);
+
+    // si la libreria de esta arch no fue liberada, obtener la funcion de destruccion de esa lib
+    // y liberar la libreria llamando antes a su destructor
+    if (lib_isa != NULL) {
+        char *error = NULL;
+        destructor_t lib_isa_destructor = (destructor_t)load_simbol(lib_isa, "dtor__");
+        get_error_lib(error);
+        if (error != NULL) {
+            fprintf(stderr, "No se pudo obtener la funcion os_destructor(%p): %s\n", os_destructor, error);
+            close_lib(lib_isa);
+            exit(-1);
+        }
+        if (lib_isa_destructor != NULL) lib_isa_destructor();
+        else puts("not found lib_isa_destructor");
+
+        close_lib(lib_isa);
+    }
 }
 
 /**
@@ -213,8 +251,6 @@ void register_init(void) {
     constructor = os_constructor;
     destructor  = os_destructor;
 }
-
-
 
 
 DLL_EXPORT void who_system() {

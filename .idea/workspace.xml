@@ -5,6 +5,8 @@
   </component>
   <component name="BackendCodeEditorMiscSettings">
     <option name="/Default/Housekeeping/FeatureSuggestion/FeatureSuggestionManager/DisabledSuggesters/=SwitchToGoToActionSuggester/@EntryIndexedValue" value="true" type="bool" />
+    <option name="/Default/Housekeeping/GlobalSettingsUpgraded/IsUpgraded/@EntryValue" value="true" type="bool" />
+    <option name="/Default/RiderDebugger/RiderRestoreDecompile/RestoreDecompileSetting/@EntryValue" value="false" type="bool" />
   </component>
   <component name="CMakePresetLoader">{
   &quot;useNewFormat&quot;: true
@@ -18,16 +20,19 @@
   <component name="CMakeRunConfigurationManager">
     <generated>
       <config projectName="MyProject" targetName="generate_lib_static_libcolors" />
-      <config projectName="MyProject" targetName="clean_all" />
       <config projectName="MyProject" targetName="tests" />
       <config projectName="MyProject" targetName="default" />
       <config projectName="MyProject" targetName="generate_lib_static_lexpar_c" />
-      <config projectName="MyProject" targetName="os" />
       <config projectName="MyProject" targetName="os_test" />
       <config projectName="MyProject" targetName="build_all" />
-      <config projectName="MyProject" targetName="generate_lib_module" />
+      <config projectName="MyProject" targetName="generate_lib_static_libdebug" />
       <config projectName="MyProject" targetName="generate_lib_static_structs_data_c" />
+      <config projectName="MyProject" targetName="x86_64" />
       <config projectName="MyProject" targetName="generate_lib_static_Emmitx86" />
+      <config projectName="MyProject" targetName="clean_all" />
+      <config projectName="MyProject" targetName="os" />
+      <config projectName="MyProject" targetName="generate_lib_module" />
+      <config projectName="MyProject" targetName="x86_64_test" />
     </generated>
   </component>
   <component name="CMakeSettings">
@@ -38,12 +43,27 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="551fea99-8a8d-46a3-92f5-13212e2dec6c" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/ISA/isa.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tests/x86_64_test.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/x86_64/require.mk" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/x86_64/x86_64.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/x86_64/x86_64.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/editor.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/editor.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Makefile" beforeDir="false" afterPath="$PROJECT_DIR$/Makefile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config.mk" beforeDir="false" afterPath="$PROJECT_DIR$/config.mk" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/din_lib_c" beforeDir="false" afterPath="$PROJECT_DIR$/din_lib_c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/din_lib_c/init.c" beforeDir="false" afterPath="$PROJECT_DIR$/din_lib_c/init.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/json_specs.abimap.json" beforeDir="false" afterPath="$PROJECT_DIR$/json_specs.abimap.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/Emmitx86" beforeDir="false" afterPath="$PROJECT_DIR$/lib/Emmitx86" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/Emmitx86/examples/code.c" beforeDir="false" afterPath="$PROJECT_DIR$/lib/Emmitx86/examples/code.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/Emmitx86/include/global_emmit.h" beforeDir="false" afterPath="$PROJECT_DIR$/lib/Emmitx86/include/global_emmit.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/lexpar_c" beforeDir="false" afterPath="$PROJECT_DIR$/lib/lexpar_c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/lexpar_c/lib/structs_data_C" beforeDir="false" afterPath="$PROJECT_DIR$/lib/lexpar_c/lib/structs_data_C" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/lexpar_c/lib/structs_data_C/DebugLibC" beforeDir="false" afterPath="$PROJECT_DIR$/lib/lexpar_c/lib/structs_data_C/DebugLibC" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/lexpar_c/lib/structs_data_C/DebugLibC/colors-C-C-plus-plus" beforeDir="false" afterPath="$PROJECT_DIR$/lib/lexpar_c/lib/structs_data_C/DebugLibC/colors-C-C-plus-plus" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/os/os.c" beforeDir="false" afterPath="$PROJECT_DIR$/os/os.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/os/os.h" beforeDir="false" afterPath="$PROJECT_DIR$/os/os.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/os/require.mk" beforeDir="false" afterPath="$PROJECT_DIR$/os/require.mk" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/os_test.c" beforeDir="false" afterPath="$PROJECT_DIR$/tests/os_test.c" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -58,20 +78,15 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/din_lib_c/din_lib_c.h" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/lib/Emmitx86/include/global_emmit.h" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/lib/Emmitx86/src/global_emmit.c" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/lib/lexpar_c/include/json_c.h" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/lib/lexpar_c/lib/structs_data_C/array-list.h" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/lib/lexpar_c/lib/structs_data_C/ast.h" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/lib/lexpar_c/src/json_c.c" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/os/os.h" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/x86_64/x86_64.h" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="ProjectColorInfo">{
   &quot;customColor&quot;: &quot;&quot;,
@@ -84,8 +99,9 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
-    "CMake Application.os.executor": "Valgrind",
-    "CMake Application.os_test.executor": "Run",
+    "CMake Application.os.executor": "Run",
+    "CMake Application.os_test.executor": "Debug",
+    "CMake Application.x86_64_test.executor": "Run",
     "ModuleVcsDetector.initialDetectionPerformed": "true",
     "RunOnceActivity.RadMigrateCodeStyle": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
@@ -105,11 +121,6 @@
   }
 }]]></component>
   <component name="RunManager" selected="CMake Application.os">
-    <configuration default="true" type="CLionExternalRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true">
-      <method v="2">
-        <option name="CLION.EXTERNAL.BUILD" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="build_all" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="MyProject" TARGET_NAME="build_all" CONFIG_NAME="Debug">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
@@ -145,6 +156,11 @@
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
     </configuration>
+    <configuration name="generate_lib_static_libdebug" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="MyProject" TARGET_NAME="generate_lib_static_libdebug" CONFIG_NAME="Debug">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="generate_lib_static_structs_data_c" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="MyProject" TARGET_NAME="generate_lib_static_structs_data_c" CONFIG_NAME="Debug">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
@@ -165,6 +181,16 @@
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
     </configuration>
+    <configuration name="x86_64" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="MyProject" TARGET_NAME="x86_64" CONFIG_NAME="Debug">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="x86_64_test" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="MyProject" TARGET_NAME="x86_64_test" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="MyProject" RUN_TARGET_NAME="x86_64_test">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
     <list>
       <item itemvalue="CMake Application.build_all" />
       <item itemvalue="CMake Application.clean_all" />
@@ -173,10 +199,13 @@
       <item itemvalue="CMake Application.generate_lib_static_Emmitx86" />
       <item itemvalue="CMake Application.generate_lib_static_lexpar_c" />
       <item itemvalue="CMake Application.generate_lib_static_libcolors" />
+      <item itemvalue="CMake Application.generate_lib_static_libdebug" />
       <item itemvalue="CMake Application.generate_lib_static_structs_data_c" />
       <item itemvalue="CMake Application.os" />
       <item itemvalue="CMake Application.os_test" />
       <item itemvalue="CMake Application.tests" />
+      <item itemvalue="CMake Application.x86_64" />
+      <item itemvalue="CMake Application.x86_64_test" />
     </list>
   </component>
   <component name="TaskManager">
@@ -191,6 +220,12 @@
       <workItem from="1748185553651" duration="206000" />
       <workItem from="1748186906959" duration="5478000" />
       <workItem from="1748194765140" duration="3231000" />
+      <workItem from="1751660133843" duration="4344000" />
+      <workItem from="1751912909530" duration="1000" />
+      <workItem from="1751919661484" duration="678000" />
+      <workItem from="1753367720558" duration="9271000" />
+      <workItem from="1753701976553" duration="230000" />
+      <workItem from="1753977019531" duration="12365000" />
     </task>
     <servers />
   </component>
@@ -201,5 +236,16 @@
     <isAutomaticCheckingOnLaunch value="false" />
     <isAutomaticFoundErrors value="true" />
     <isAutomaticReloadCMake value="true" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
+          <url>file://$PROJECT_DIR$/x86_64/x86_64.c</url>
+          <line>117</line>
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

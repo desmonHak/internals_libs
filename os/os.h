@@ -1,10 +1,12 @@
 #ifndef OS_H
 #define OS_H
 
-
-#include "json_c.h"
 #include "x86/amd64/amd64.h"
 #include "global_emmit.h"
+
+#include "../../include/vm.h"
+
+#include "json_c.h"
 
 #include "din_lib_c.h"
 
@@ -110,11 +112,17 @@ typedef struct type_data_json_t {
 } type_data_json_t;
 type_data_json_t get_type_data_json(const char* arch, const char* name_conv);
 
+typedef void (*f_invoke_callthblock)(shellcode_t *,  ThreadVM_t *);
+
 // Helper: ¿Es un nodo array?
 static int is_array_node(ast_node_t* node) {
     return node && node->data && strcmp((char*)node->data, "[") == 0;
 }
 DLL_EXPORT void os_destructor(void);
+
+DLL_EXPORT const char *getBuild();
 DLL_EXPORT void who_system();
+
+//DLL_EXPORT din_lib lib_isa = NULL;
 
 #endif // MYLIB_H

@@ -7,7 +7,7 @@ if(WIN32)
     set(SHARED_LIB_EXT "dll")
     set(EXEC_EXT "exe")
     set(CFLAGS -g -Wall -shared -O0 -static -DDEBUG -D_ExceptionHandler)
-    set(DLL_EXPORT_MACRO "-DBUILDING_DIN_LYB")
+    set(DLL_EXPORT_MACRO -DBUILDING_DIN_LYB)
 else()
     # Linux o macOS
     if(APPLE)
@@ -18,12 +18,11 @@ else()
     set(SHARED_LIB_EXT "so")
     set(EXEC_EXT "elf")
     set(CFLAGS -g -Wall -O0 -shared -fPIC -static -DDEBUG -D_ExceptionHandler)
-    set(DLL_EXPORT_MACRO "-DBUILDING_DIN_LYB")
+    set(DLL_EXPORT_MACRO -DBUILDING_DIN_LYB)
 endif()
 
 # Paths base
 set(PATH_tests "${CMAKE_CURRENT_SOURCE_DIR}/tests")
-set(PATH_os "${CMAKE_CURRENT_SOURCE_DIR}/os")
 set(PATH_LIBRARY "${CMAKE_CURRENT_SOURCE_DIR}/lib")
 set(PATH_Emmitx86 "${PATH_LIBRARY}/Emmitx86")
 set(PATH_lexpar_c "${PATH_LIBRARY}/lexpar_c")
@@ -32,9 +31,19 @@ set(PATH_DebugLibC "${PATH_structs_data_C}/DebugLibC")
 set(PATH_colors_C_C_plus_plus "${PATH_DebugLibC}/colors-C-C-plus-plus")
 set(PATH_din_lib_c "${CMAKE_CURRENT_SOURCE_DIR}/din_lib_c")
 
+set(PATH_isa "${CMAKE_CURRENT_SOURCE_DIR}/ISA")
+
+# paths de librerias
+set(PATH_os "${CMAKE_CURRENT_SOURCE_DIR}/os")
+set(PATH_x86_64 "${CMAKE_CURRENT_SOURCE_DIR}/x86_64")
+
 # Includes
 include_directories(
+        # paths de librerias
         ${PATH_os}
+        ${PATH_x86_64}
+        ${PATH_isa}
+
         ${PATH_din_lib_c}
         ${PATH_Emmitx86}/include
         ${PATH_lexpar_c}/include
@@ -46,47 +55,50 @@ include_directories(
 # Compiler flags
 add_compile_options(${CFLAGS} ${DLL_EXPORT_MACRO})
 
-# Linker flags (donde buscar las librerias estaticas)
-link_directories(${PATH_Emmitx86} ${PATH_lexpar_c} ${PATH_structs_data_C} ${PATH_colors_C_C_plus_plus})
-# Librerías
-set(COMMON_LIBS Emmitx86 lexpar_c structs_data_c colors)
+# Linker flags - añadimos directorios para las librerías estáticas externas
+link_directories(
+        ${PATH_Emmitx86}
+        ${PATH_lexpar_c}
+        ${PATH_structs_data_C}
+        ${PATH_DebugLibC}
+        ${PATH_colors_C_C_plus_plus}
+)
 
+# Definir las librerías comunes:
+# Dado que usas librerías estáticas generadas por makefiles externos, las debes linkear con el prefijo "lib" y sufijo ".a" (o bien solo el nombre sin extensión para el linker)
+# Por ejemplo, para libdebug.a en ${PATH_DebugLibC} basta con linkear con "debug".
+# No obstante, asegúrate que la librería existe y es accesible.
 
-# --- Librerías dinámicas ---
-set(LIBS os)
-set(DLL_NAMES "")
-foreach(lib IN LISTS LIBS)
-    list(APPEND DLL_NAMES "${lib}.${SHARED_LIB_EXT}")
-endforeach()
+set(COMMON_LIBS Emmitx86 lexpar_c structs_data_c debug colors)
 
-# Objetos
-set(EXE_NAME "main_executable") # Cambia si tienes otro nombre
-set(EXE_SRC "${EXE_NAME}.c")
-set(EXE_OBJ "${EXE_NAME}.o")
+# --- Librerías compartidas a generar ---
+set(LIBS os x86_64)
 
-# Ejecutable principal
-# add_executable(${EXE_NAME} ${EXE_SRC})
-# target_link_libraries(${EXE_NAME} ${COMMON_LIBS})
+file(GLOB LEXPAR_C_SOURCES "${PATH_lexpar_c}/*.c")
 
-# --- Librerías compartidas ---
+# Agregar librerías compartidas "os" y "x86_64"
 foreach(lib IN LISTS LIBS)
     if(lib STREQUAL "os")
         add_library(${lib} SHARED
                 "${PATH_os}/${lib}.c"
                 ${LEXPAR_C_SOURCES}
         )
-        # Ahora que 'os' existe, se puede agregar dependencia y linkear
-        add_dependencies(${lib} generate_lib_static_Emmitx86)
-        add_dependencies(${lib} generate_lib_static_lexpar_c)
-        target_link_libraries(${lib} ${COMMON_LIBS})
+    elseif(lib STREQUAL "x86_64")
+        add_library(${lib} SHARED
+                "${PATH_x86_64}/${lib}.c"
+                ${LEXPAR_C_SOURCES}
+        )
     else()
-        add_library(${lib} SHARED "${PATH_os}/${lib}.c")
-        target_link_libraries(${lib} ${COMMON_LIBS})
+        message(WARNING "Librería desconocida: ${lib}")
     endif()
 
+    # Configurar propiedades y dependencias
     target_compile_definitions(${lib} PRIVATE BUILDING_DIN_LYB)
     target_include_directories(${lib} PRIVATE
             ${PATH_os}
+            ${PATH_x86_64}
+            ${PATH_isa}
+
             ${PATH_din_lib_c}
             ${PATH_Emmitx86}/include
             ${PATH_lexpar_c}/include
@@ -94,14 +106,22 @@ foreach(lib IN LISTS LIBS)
             ${PATH_DebugLibC}
             ${PATH_colors_C_C_plus_plus}
     )
+
+    target_link_libraries(${lib} ${COMMON_LIBS})
+
+    # Dependencias a targets que generan las libs estáticas
+    add_dependencies(${lib} generate_lib_static_Emmitx86)
+    add_dependencies(${lib} generate_lib_static_lexpar_c)
+    add_dependencies(${lib} generate_lib_static_structs_data_c)   # lo habías olvidado
+    add_dependencies(${lib} generate_lib_static_libdebug)
+    add_dependencies(${lib} generate_lib_static_libcolors)
+
     set_target_properties(${lib} PROPERTIES
             PREFIX ""
             OUTPUT_NAME ${lib}
             SUFFIX ".${SHARED_LIB_EXT}"
     )
 endforeach()
-
-file(GLOB LEXPAR_C_SOURCES "${PATH_lexpar_c}/*.c")
 
 # --- Tests ---
 set(TEST_EXES "")
@@ -142,6 +162,12 @@ add_custom_target(generate_lib_static_structs_data_c
         COMMENT "Generando libstructs_data_c.a ejecutando make en ${PATH_structs_data_C}"
 )
 
+# --- Generar librería estática libdebug.a ---
+add_custom_target(generate_lib_static_libdebug
+        COMMAND ${CMAKE_MAKE_PROGRAM} -C ${PATH_DebugLibC} -f ${OS_NAME}.mk generate_lib
+        COMMENT "Generando libdebug.a ejecutando make en ${PATH_DebugLibC}"
+)
+
 # --- Generar librería estática libcolors.a ---
 add_custom_target(generate_lib_static_libcolors
         COMMAND ${CMAKE_MAKE_PROGRAM} -C ${PATH_colors_C_C_plus_plus} -f ${OS_NAME}.mk generate_lib
@@ -149,6 +175,11 @@ add_custom_target(generate_lib_static_libcolors
 )
 
 # --- Generar librerías compartidas ---
+set(DLL_NAMES "")
+foreach(lib IN LISTS LIBS)
+    list(APPEND DLL_NAMES "${lib}.${SHARED_LIB_EXT}")
+endforeach()
+
 add_custom_target(generate_lib_module DEPENDS ${DLL_NAMES})
 
 # --- all ---
@@ -160,5 +191,8 @@ add_custom_target(clean_all
         COMMAND ${CMAKE_COMMAND} -E rm -f *.o *.${EXEC_EXT} *.${SHARED_LIB_EXT}
         COMMAND ${CMAKE_MAKE_PROGRAM} -C ${PATH_Emmitx86} -f ${OS_NAME}.mk cleanall
         COMMAND ${CMAKE_MAKE_PROGRAM} -C ${PATH_lexpar_c} -f ${OS_NAME}.mk cleanall
+        COMMAND ${CMAKE_MAKE_PROGRAM} -C ${PATH_structs_data_C} -f ${OS_NAME}.mk cleanall  # Falta limpiar structs_data_c
+        COMMAND ${CMAKE_MAKE_PROGRAM} -C ${PATH_DebugLibC} -f ${OS_NAME}.mk cleanall
+        COMMAND ${CMAKE_MAKE_PROGRAM} -C ${PATH_colors_C_C_plus_plus} -f ${OS_NAME}.mk cleanall  # Falta limpiar colors
         COMMENT "Limpiando archivos objeto y ejecutables"
 )

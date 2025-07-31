@@ -1,4 +1,6 @@
-LIBS = os
+
+
+LIBS = x86_64 os
 
 include config.mk
 
