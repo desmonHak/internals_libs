@@ -86,7 +86,10 @@ int main() {
         if (thread.err_thread == THREAD_UNKNOWN_ERROR) {
             puts("Error al crear el hilo");
         }
+
         _sleep(2000);
+
+        printf("valor obtenido de la ejecucion: %d\n", (size_t)thread.pending_call->result);
 
         free(thread.pending_call);
 

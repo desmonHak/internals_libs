@@ -5,3 +5,4 @@
 *.elf
 *.dll
 cmake-build*
+error_log.*

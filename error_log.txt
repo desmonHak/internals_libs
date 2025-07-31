@@ -1,2 +1,0 @@
-[Error] lib_isa cargado correctamente: ./x86_64.dll
- (src/debug_c.c:397)

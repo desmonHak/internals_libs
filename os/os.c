@@ -261,7 +261,7 @@ DLL_EXPORT void who_system() {
     call(ptr_sc, expand);
 
     printf("who_system!\n");
-    EMIT_MOV_R_I(ptr_sc, RBX, 0x12345678deadbeefull);
+    //EMIT_MOV_R_I(ptr_sc, RBX, 0x12345678deadbeefull);
 }
 
 DLL_EXPORT bool queery_arch(const char* name_arch) {

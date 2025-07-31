@@ -46,7 +46,6 @@
       <change afterPath="$PROJECT_DIR$/ISA/isa.h" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/tests/x86_64_test.c" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/x86_64/require.mk" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/x86_64/x86_64.c" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/x86_64/x86_64.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/editor.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/editor.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
@@ -64,6 +63,7 @@
       <change beforePath="$PROJECT_DIR$/os/os.h" beforeDir="false" afterPath="$PROJECT_DIR$/os/os.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/os/require.mk" beforeDir="false" afterPath="$PROJECT_DIR$/os/require.mk" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tests/os_test.c" beforeDir="false" afterPath="$PROJECT_DIR$/tests/os_test.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/x86_64/x86_64.c" beforeDir="false" afterPath="$PROJECT_DIR$/x86_64/x86_64.c" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -111,7 +111,7 @@
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "cf.first.check.clang-format": "false",
     "cidr.known.project.marker": "true",
-    "git-widget-placeholder": "master",
+    "git-widget-placeholder": "dev",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -225,7 +225,7 @@
       <workItem from="1751919661484" duration="678000" />
       <workItem from="1753367720558" duration="9271000" />
       <workItem from="1753701976553" duration="230000" />
-      <workItem from="1753977019531" duration="12365000" />
+      <workItem from="1753977019531" duration="15350000" />
     </task>
     <servers />
   </component>

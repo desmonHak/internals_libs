@@ -119,6 +119,7 @@ void register_init(void) {
 }
 
 void *allocate_executable_buffer(size_t size) {
+    size = (size + 0xFFF) & ~0xFFF; // Redondear a 4KB
     void *mem = VirtualAlloc(NULL, size, MEM_COMMIT | MEM_RESERVE, PAGE_EXECUTE_READWRITE);
     if (!mem) {
         // error
@@ -154,20 +155,27 @@ static void *call_external_function(void *arg) {
     // emitimos un `mov [r11], rax`, se espera guardar en R11
     // una direccion de variable
     EMIT_M_R(call_data->arg, MOV, R11, RAX);
+
+    // emitimos un retorno
+    call(call_data->arg, Emit8, 0xc3);
     call(call_data->arg, dump);
+
 
     void *exec_mem = allocate_executable_buffer(call_data->arg->size);
     if (!exec_mem) {
         puts("Error al crear memoria ejecutable");
     }
 
+    // copiar el código
+    memcpy(exec_mem, call_data->arg->code, call_data->arg->size);
+
+    printf("[+] Ejecutando shellcode en %p\n", exec_mem);
     ((void (*)())exec_mem)();
 
     VirtualFree(exec_mem, 0, MEM_RELEASE);
 
 
-    // copiar el código
-    memcpy(exec_mem, call_data->arg, call_data->arg->size);
+
 
     call_data->finished = true;
     pthread_mutex_unlock(&call_data->lock);
